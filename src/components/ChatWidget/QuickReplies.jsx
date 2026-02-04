@@ -7,7 +7,8 @@ import React from 'react';
 export function QuickReplies({ options, onSelect, disabled }) {
   if (!options || options.length === 0) return null;
   return (
-    <div className="quick-replies" role="group" aria-label="Quick replies">
+    <div className="quick-replies" role="group" aria-label="Suggested replies">
+      <div className="quick-replies__label">Suggested replies</div>
       {options.map((label, i) => (
         <button
           key={`${label}-${i}`}

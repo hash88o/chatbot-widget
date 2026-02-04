@@ -1,12 +1,19 @@
 import React from 'react';
 
 /**
- * Widget header: brand name + close. Semantic and keyboard-accessible.
+ * Widget header: brand identity + subtle status + close.
+ * Establishes trust without visual noise.
  */
 export function Header({ brandName, onClose }) {
   return (
     <header className="chat-header" role="banner">
-      <span className="chat-header__brand">{brandName}</span>
+      <div className="chat-header__info">
+        <span className="chat-header__brand">{brandName}</span>
+        <div className="chat-header__status" aria-label="Typically replies in under a minute">
+          <span className="chat-header__status-dot" aria-hidden />
+          <span className="chat-header__status-text">Online · Typically replies in under a minute</span>
+        </div>
+      </div>
       <button
         type="button"
         className="chat-header__close"

@@ -2,7 +2,7 @@ import React from 'react';
 
 /**
  * Single message bubble — user (right, dark) vs bot (left, surface).
- * Multi-line safe; optional subtle timestamp.
+ * Multi-line safe. Timestamp is intentionally quiet and surfaces on hover (desktop).
  */
 export function MessageBubble({ role, content, timestamp }) {
   const isUser = role === 'user';

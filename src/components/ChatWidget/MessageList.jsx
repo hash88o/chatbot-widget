@@ -7,10 +7,20 @@ import { TypingIndicator } from './TypingIndicator';
  */
 export function MessageList({ messages, isTyping }) {
   const listRef = useRef(null);
+  const isAtBottomRef = useRef(true);
+
+  const handleScroll = () => {
+    const el = listRef.current;
+    if (!el) return;
+    const threshold = 32; // px from bottom using spacing token scale
+    const distanceFromBottom = el.scrollHeight - el.scrollTop - el.clientHeight;
+    isAtBottomRef.current = distanceFromBottom <= threshold;
+  };
 
   useEffect(() => {
     const el = listRef.current;
     if (!el) return;
+    if (!isAtBottomRef.current) return;
     el.scrollTop = el.scrollHeight;
   }, [messages.length, isTyping]);
 
@@ -18,6 +28,7 @@ export function MessageList({ messages, isTyping }) {
     <div
       ref={listRef}
       className="message-list"
+      onScroll={handleScroll}
       role="log"
       aria-live="polite"
       aria-label="Chat messages"

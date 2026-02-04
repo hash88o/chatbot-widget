@@ -7,12 +7,15 @@ import React, { useState, useRef, useEffect } from 'react';
 export function InputArea({ onSend, disabled, placeholder }) {
   const [value, setValue] = useState('');
   const inputRef = useRef(null);
+  const [justSent, setJustSent] = useState(false);
 
   const handleSubmit = () => {
     const trimmed = value.trim();
     if (!trimmed || disabled) return;
     onSend(trimmed);
     setValue('');
+    setJustSent(true);
+    window.setTimeout(() => setJustSent(false), 180);
   };
 
   const handleKeyDown = (e) => {
@@ -25,7 +28,7 @@ export function InputArea({ onSend, disabled, placeholder }) {
   return (
     <div className="input-area">
       <label htmlFor="chat-input" className="sr-only">
-        Type your message
+        Ask a question
       </label>
       <textarea
         id="chat-input"
@@ -34,15 +37,15 @@ export function InputArea({ onSend, disabled, placeholder }) {
         value={value}
         onChange={(e) => setValue(e.target.value)}
         onKeyDown={handleKeyDown}
-        placeholder={placeholder || 'Type a message…'}
+        placeholder={placeholder || 'Ask a question…'}
         disabled={disabled}
         rows={1}
-        aria-label="Type your message"
+        aria-label="Ask a question"
         maxLength={2000}
       />
       <button
         type="button"
-        className="input-area__send"
+        className={`input-area__send${justSent ? ' input-area__send--sent' : ''}`}
         onClick={handleSubmit}
         disabled={disabled || !value.trim()}
         aria-label="Send message"

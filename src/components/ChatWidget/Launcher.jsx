@@ -8,7 +8,7 @@ export function Launcher({ onClick, isOpen, 'aria-label': ariaLabel }) {
   return (
     <button
       type="button"
-      className="chat-launcher"
+      className={`chat-launcher${isOpen ? ' chat-launcher--open' : ''}`}
       onClick={onClick}
       aria-label={ariaLabel || (isOpen ? 'Close chat' : 'Open chat')}
       aria-expanded={isOpen}

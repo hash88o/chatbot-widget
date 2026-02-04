@@ -17,12 +17,14 @@
   --c-primary-soft: rgba(11, 105, 255, 0.08);
   --c-success: #16a34a;
   --c-danger: #d92d20;
-  --c-user-bubble: #0f172a;
-  --c-bot-bubble: #f1f5f9;
+  --c-user-bubble: #111827;
+  --c-bot-bubble: #f3f4f6;
 
   /* ——— Spacing (8pt system) ——— */
+  --space-0-5: 2px;
   --space-1: 4px;
   --space-2: 8px;
+  --space-2-5: 12px;
   --space-3: 16px;
   --space-4: 24px;
   --space-5: 40px;
@@ -53,9 +55,10 @@
   /* ——— Motion ——— */
   --ease-out: cubic-bezier(0.2, 0.9, 0.2, 1);
   --duration-fast: 120ms;
-  --duration-medium: 200ms;
+  --duration-medium: 220ms;
   --duration-slow: 320ms;
-  --duration-typing: 600ms;
+  --duration-typing: 960ms;
+  --duration-message: 140ms;
 
   /* ——— Elevation ——— */
   --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
@@ -65,7 +68,7 @@
   /* ——— Widget dimensions ——— */
   --widget-width: 380px;
   --widget-height: 560px;
-  --widget-header-h: 56px;
+  --widget-header-h: 52px;
   --widget-input-h: 64px;
   --launcher-size: 56px;
 }

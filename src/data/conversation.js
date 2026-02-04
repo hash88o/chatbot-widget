@@ -7,8 +7,8 @@ export const BOT_NAME = 'Support';
 
 /** Initial greeting and first bot message */
 export const GREETING = {
-  text: "Hi there! I'm here to help. What's your name?",
-  quickReplies: [],
+  text: "Hi — I'm here to help with anything about AmplifyEase.\nYou can ask a question or pick one of the options below.",
+  quickReplies: ['Hours', 'Pricing', 'Contact support'],
 };
 
 /** FAQ triggers (lowercased) → bot response */
@@ -51,7 +51,14 @@ export function getBotResponse(state, userMessage) {
   const step = state?.step || 'greeting';
 
   if (step === 'greeting') {
-    if (!msg) return { text: GREETING.text, quickReplies: [] };
+    if (!msg) return { text: GREETING.text, quickReplies: GREETING.quickReplies };
+    const faqFromGreeting = findFaqAnswer(msg);
+    if (faqFromGreeting) {
+      return {
+        text: faqFromGreeting,
+        quickReplies: [],
+      };
+    }
     return {
       text: `Nice to meet you, ${msg}. What's your email? (Optional—you can skip or type "skip".)`,
       quickReplies: ['Skip'],
@@ -102,7 +109,13 @@ export function advanceStep(state, userMessage) {
   const step = state?.step || 'greeting';
   const msg = (userMessage || '').trim();
 
-  if (step === 'greeting' && msg) return { ...state, step: 'email', userName: msg };
+  if (step === 'greeting' && msg) {
+    const faqFromGreeting = findFaqAnswer(msg);
+    if (faqFromGreeting) {
+      return { ...state, step: 'chat' };
+    }
+    return { ...state, step: 'email', userName: msg };
+  }
   if (step === 'email') {
     if (!msg || normalize(msg) === 'skip') return { ...state, step: 'chat' };
     if (msg.includes('@') && msg.includes('.')) return { ...state, step: 'chat', userEmail: msg };

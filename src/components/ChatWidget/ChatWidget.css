@@ -21,7 +21,6 @@
     transform var(--duration-fast) var(--ease-out),
     box-shadow var(--duration-medium) var(--ease-out),
     background var(--duration-fast) var(--ease-out);
-  animation: launcher-pulse 10s var(--ease-out) infinite;
 }
 .chat-launcher:hover {
   transform: translateY(-2px) scale(1.02);
@@ -39,36 +38,18 @@
   align-items: center;
   justify-content: center;
 }
-
 .chat-launcher--open {
   background: var(--c-primary);
 }
-
 .chat-launcher--open .chat-launcher__icon svg {
   transform: rotate(90deg);
   transition: transform var(--duration-fast) var(--ease-out);
-}
-
-@keyframes launcher-pulse {
-  0%,
-  92%,
-  100% {
-    transform: scale(1);
-    box-shadow: var(--shadow-lg);
-  }
-  96% {
-    transform: scale(1.02);
-    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.18);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .chat-launcher:hover,
   .chat-launcher:active {
     transform: none;
-  }
-  .chat-launcher {
-    animation: none;
   }
 }
 
@@ -206,6 +187,7 @@
     display: none;
   }
 }
+
 .message-list__typing {
   align-self: flex-start;
 }
@@ -265,12 +247,6 @@
 @media (prefers-reduced-motion: reduce) {
   .message-bubble {
     animation: none;
-  }
-}
-
-@media (hover: none) {
-  .message-bubble__time {
-    opacity: 0.6;
   }
 }
 
@@ -466,3 +442,4 @@
   background: rgba(217, 45, 32, 0.08);
   border-top: 1px solid rgba(217, 45, 32, 0.2);
 }
+

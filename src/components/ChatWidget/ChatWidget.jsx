@@ -42,7 +42,7 @@ export function ChatWidget({ brandName = DEFAULT_BRAND }) {
 
   const handleQuickReply = useCallback(
     (label) => {
-      sendMessage(label, [label]);
+      sendMessage(label);
     },
     [sendMessage]
   );
@@ -53,7 +53,11 @@ export function ChatWidget({ brandName = DEFAULT_BRAND }) {
   useEffect(() => {
     if (!isOpen) return;
     function handleClick(e) {
-      if (windowRef.current && !windowRef.current.contains(e.target) && !launcherRef.current?.contains(e.target)) {
+      if (
+        windowRef.current &&
+        !windowRef.current.contains(e.target) &&
+        !launcherRef.current?.contains(e.target)
+      ) {
         close();
       }
     }
@@ -86,7 +90,11 @@ export function ChatWidget({ brandName = DEFAULT_BRAND }) {
   return (
     <>
       <div ref={launcherRef}>
-        <Launcher onClick={toggle} isOpen={isOpen} aria-label={isOpen ? 'Close chat' : 'Open chat'} />
+        <Launcher
+          onClick={toggle}
+          isOpen={isOpen}
+          aria-label={isOpen ? 'Close chat' : 'Open chat'}
+        />
       </div>
       {isOpen && (
         <div
@@ -114,7 +122,7 @@ export function ChatWidget({ brandName = DEFAULT_BRAND }) {
             <InputArea
               onSend={sendMessage}
               disabled={isTyping}
-              placeholder="Type a message…"
+              placeholder="Ask a question…"
             />
           </div>
         </div>
@@ -122,3 +130,4 @@ export function ChatWidget({ brandName = DEFAULT_BRAND }) {
     </>
   );
 }
+

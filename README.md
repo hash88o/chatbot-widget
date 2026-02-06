@@ -1,6 +1,6 @@
 # Chatbot Widget
 
-Embeddable chat widget for any website.
+Embeddable chat widget for any website
 
 ## Tech Stack
 
